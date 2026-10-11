@@ -12,7 +12,7 @@ Auto Rent est un site web responsive de démonstration pour une agence de locati
 
 ## Bibliothèques intégrées
 
-Les bibliothèques sont chargées depuis `node_modules` afin de pouvoir utiliser le projet hors ligne.
+Les fichiers distribuables nécessaires des bibliothèques sont inclus dans `vendor/`, afin qu'ils soient disponibles après publication sur GitHub Pages et en utilisation hors ligne. Les fichiers sont conservés dans leurs propres dossiers avec leurs licences ; les originaux et versions de développement sont gérés avec `node_modules`.
 
 - **Bootstrap 5.3.8** : grille responsive, navigation, cartes, formulaires, boutons et carrousel
 - **Bootstrap Icons 1.11.3** : icônes de l’interface
@@ -62,6 +62,6 @@ L’IA a servi à proposer et accélérer les améliorations ci-dessous. Le code
 
 ## Utilisation
 
-Conserver `node_modules` avec le projet et ouvrir `index.html` ou `index2.html` dans un navigateur. `index.html` redirige vers la version principale `index2.html`, notamment pour que la racine de GitHub Pages affiche la bonne page. Aucune installation de dépendances ni aucun serveur web n’est nécessaire si les fichiers du projet sont présents.
+Ouvrir `index.html` ou `index2.html` dans un navigateur. `index.html` redirige vers la version principale `index2.html`, notamment pour que la racine de GitHub Pages affiche la bonne page. Le dossier `vendor/` contient les ressources nécessaires pour le site publié et l'utilisation hors ligne ; aucun serveur web n'est nécessaire.
 
 Les réservations ne sont qu’une simulation locale : elles ne sont pas partagées entre appareils et ne constituent pas une confirmation réelle de location. Le formulaire de contact valide les champs, mais n’envoie pas d’email.
