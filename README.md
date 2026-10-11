@@ -62,6 +62,6 @@ L’IA a servi à proposer et accélérer les améliorations ci-dessous. Le code
 
 ## Utilisation
 
-Conserver `node_modules` avec le projet et ouvrir `index2.html` dans un navigateur. Aucune installation de dépendances ni aucun serveur web n’est nécessaire si les fichiers du projet sont présents.
+Conserver `node_modules` avec le projet et ouvrir `index.html` ou `index2.html` dans un navigateur. `index.html` redirige vers la version principale `index2.html`, notamment pour que la racine de GitHub Pages affiche la bonne page. Aucune installation de dépendances ni aucun serveur web n’est nécessaire si les fichiers du projet sont présents.
 
 Les réservations ne sont qu’une simulation locale : elles ne sont pas partagées entre appareils et ne constituent pas une confirmation réelle de location. Le formulaire de contact valide les champs, mais n’envoie pas d’email.
