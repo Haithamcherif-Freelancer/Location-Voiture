@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Consultez et filtrez les véhicules disponibles chez Auto Rent.">
+    <title>Catalogue des véhicules - Auto Rent</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="catalogue.css">
+    <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index2.html">
+                <i class="bi bi-car-front-fill text-danger me-2" aria-hidden="true"></i>AUTO RENT
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navigationPrincipale" aria-controls="navigationPrincipale"
+                aria-expanded="false" aria-label="Afficher la navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navigationPrincipale">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link" href="index2.html">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index2.html#categories">Catégories</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalogue.html">Catalogue</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index2.html#reservation">Réservation</a></li>
+                    <li class="nav-item" data-devis-link hidden><a class="nav-link" href="devis.html">Devis</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-theme-toggle" type="button" data-theme-toggle
+                            aria-label="Activer le mode sombre" title="Activer le mode sombre">
+                            <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+                            <span class="d-lg-none ms-2">Mode sombre</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    </header>
+
+    <header class="catalogue-hero py-5">
+        <div class="container py-lg-4">
+            <p class="text-primary fw-semibold mb-2">
+                <i class="bi bi-stars me-2" aria-hidden="true"></i>Flotte Auto Rent
+            </p>
+            <h1 class="display-5 fw-bold">Catalogue des véhicules</h1>
+            <p class="lead text-body-secondary mb-0">
+                Parcourez les véhicules, comparez les tarifs et filtrez par catégorie.
+            </p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <section class="row g-3 mb-4" aria-label="Statistiques de la flotte">
+            <div class="col-12 col-sm-6 col-xl-3">
+                <article class="card h-100">
+                    <div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon text-primary bg-primary-subtle">
+                            <i class="bi bi-car-front-fill" aria-hidden="true"></i>
+                        </span>
+                        <div><p id="statTotal" class="stat-value mb-0">—</p><p class="text-body-secondary mb-0">Véhicules</p></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <article class="card h-100">
+                    <div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon text-success bg-success-subtle">
+                            <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                        </span>
+                        <div><p id="statDispo" class="stat-value mb-0">—</p><p class="text-body-secondary mb-0">Disponibles</p></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <article class="card h-100">
+                    <div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon text-warning bg-warning-subtle">
+                            <i class="bi bi-tag-fill" aria-hidden="true"></i>
+                        </span>
+                        <div><p id="statMinPrix" class="stat-value mb-0">—</p><p class="text-body-secondary mb-0">Prix minimum / jour</p></div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <article class="card h-100">
+                    <div class="card-body d-flex align-items-center gap-3">
+                        <span class="stat-icon text-danger bg-danger-subtle">
+                            <i class="bi bi-speedometer2" aria-hidden="true"></i>
+                        </span>
+                        <div><p id="statMaxPrix" class="stat-value mb-0">—</p><p class="text-body-secondary mb-0">Prix maximum / jour</p></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div id="catalogueErreur" class="alert alert-danger d-none" role="alert"></div>
+
+        <section class="card catalogue-card" aria-labelledby="titreInventaire">
+            <div class="card-body p-3 p-lg-4">
+                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-end gap-3 mb-4">
+                    <div>
+                        <h2 id="titreInventaire" class="h3 fw-bold mb-1">Inventaire complet</h2>
+                        <p class="text-body-secondary mb-0">Recherchez, triez et consultez les véhicules disponibles.</p>
+                    </div>
+                    <a class="btn btn-primary flex-shrink-0" href="index2.html#reservation">
+                        <i class="bi bi-calendar-plus me-2" aria-hidden="true"></i>Faire une réservation
+                    </a>
+                </div>
+
+                <div id="filtres" class="d-flex flex-wrap gap-2 mb-4" aria-label="Filtrer par catégorie">
+                    <button class="btn btn-primary filter-btn" type="button" data-cat="tous"
+                        aria-pressed="true">Tous les véhicules</button>
+                    <button class="btn btn-outline-primary filter-btn" type="button" data-cat="Citadine"
+                        aria-pressed="false">Citadines</button>
+                    <button class="btn btn-outline-primary filter-btn" type="button" data-cat="Berline"
+                        aria-pressed="false">Berlines</button>
+                    <button class="btn btn-outline-primary filter-btn" type="button" data-cat="Commerciale"
+                        aria-pressed="false">Commerciales</button>
+                </div>
+
+                <div class="row g-3 align-items-end mb-4" aria-label="Filtres avancés du catalogue">
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <label class="form-label" for="filtreMarque">Marque</label>
+                        <select id="filtreMarque" class="form-select">
+                            <option value="">Toutes les marques</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <label class="form-label" for="filtrePrixMax">Prix maximum / jour (DT)</label>
+                        <input id="filtrePrixMax" class="form-control" type="number" min="0"
+                            inputmode="numeric" placeholder="Sans limite">
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <label class="form-label" for="filtreDisponibilite">Disponibilité</label>
+                        <select id="filtreDisponibilite" class="form-select">
+                            <option value="">Toutes</option>
+                            <option value="Disponible">Disponibles</option>
+                            <option value="Indisponible">Indisponibles</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3">
+                        <label class="form-label" for="triPrix">Trier par prix</label>
+                        <select id="triPrix" class="form-select">
+                            <option value="asc">Prix croissant</option>
+                            <option value="desc">Prix décroissant</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button id="effacerFiltres" class="btn btn-outline-secondary btn-sm" type="button">
+                            Effacer les filtres
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tableCatalogue" class="table table-hover align-middle w-100">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">Photo</th>
+                                <th scope="col">#</th>
+                                <th scope="col">Catégorie</th>
+                                <th scope="col">Marque</th>
+                                <th scope="col">Modèle</th>
+                                <th scope="col">Puissance</th>
+                                <th scope="col">Prix / jour</th>
+                                <th scope="col">Disponibilité</th>
+                                <th scope="col" class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="9" class="text-center text-body-secondary">Chargement du catalogue…</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-12 col-lg-5">
+                    <a class="footer-brand" href="index2.html">
+                        <i class="bi bi-car-front-fill" aria-hidden="true"></i> AUTO RENT
+                    </a>
+                    <p class="footer-copy mt-3 mb-0">Une location simple, un véhicule adapté et un tarif clair pour chaque trajet.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h2 class="footer-heading">Navigation</h2>
+                    <ul class="footer-links">
+                        <li><a href="index2.html">Accueil</a></li>
+                        <li><a href="index2.html#categories">Catégories</a></li>
+                        <li><a href="catalogue.html">Catalogue</a></li>
+                        <li><a href="index2.html#reservation">Réservation</a></li>
+                        <li data-devis-link hidden><a href="devis.html">Devis</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-4">
+                    <h2 class="footer-heading">Contact</h2>
+                    <p class="footer-copy mb-2">Haitham cherif</p>
+                    <a class="footer-contact" href="https://www.linkedin.com/in/haithamcherif/"
+                        target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-linkedin me-2" aria-hidden="true"></i>Me contacter sur LinkedIn
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom mt-4 pt-3">
+                <span>© 2026 Auto Rent</span>
+                <span>Conçu pour vos déplacements.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/datatables.net/js/dataTables.min.js"></script>
+    <script src="node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="data/vehicles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

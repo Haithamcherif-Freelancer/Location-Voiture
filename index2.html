@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Auto Rent - Location de voitures</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="node_modules/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="node_modules/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link href="node_modules/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link href="theme.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold" href="index2.html">
+                    <i class="bi bi-car-front-fill text-danger me-2" aria-hidden="true"></i>AUTO RENT
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navigationPrincipale" aria-controls="navigationPrincipale"
+                    aria-expanded="false" aria-label="Afficher la navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navigationPrincipale">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                        <li class="nav-item"><a class="nav-link" href="index2.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index2.html#categories">Catégories</a></li>
+                        <li class="nav-item"><a class="nav-link" href="catalogue.html">Catalogue</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index2.html#reservation">Réservation</a></li>
+                        <li class="nav-item" data-devis-link hidden><a class="nav-link" href="devis.html">Devis</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item">
+                            <button class="btn btn-theme-toggle" type="button" data-theme-toggle
+                                aria-label="Activer le mode sombre" title="Activer le mode sombre">
+                                <i class="bi bi-moon-stars-fill" aria-hidden="true"></i>
+                                <span class="d-lg-none ms-2">Mode sombre</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="accueil" class="container py-5">
+            <div class="row align-items-center mb-4">
+                <div class="col-lg-8">
+                    <p class="text-primary fw-semibold mb-2">Agence de location de voitures</p>
+                    <h1 class="display-5 fw-bold">La voiture qu'il vous faut, au bon moment.</h1>
+                    <p class="lead text-body-secondary mb-0">
+                        Auto Rent vous accompagne pour vos déplacements professionnels
+                        ou personnels, en ville comme sur la route.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                    <a class="btn btn-primary btn-lg" href="#reservation">Réserver un véhicule</a>
+                </div>
+            </div>
+
+            <div id="carouselVehicules" class="carousel slide rounded overflow-hidden shadow"
+                data-bs-ride="carousel" aria-label="Catégories de véhicules">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselVehicules" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Afficher la citadine"></button>
+                    <button type="button" data-bs-target="#carouselVehicules" data-bs-slide-to="1"
+                        aria-label="Afficher la berline"></button>
+                    <button type="button" data-bs-target="#carouselVehicules" data-bs-slide-to="2"
+                        aria-label="Afficher le véhicule commercial"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="images/citadine.jpg" class="d-block w-100 carousel-image"
+                            alt="Voiture citadine pour les déplacements en ville">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2 class="h3">Citadine</h2>
+                            <p>Compacte et économique, idéale en ville.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/berline.jpg" class="d-block w-100 carousel-image"
+                            alt="Berline confortable pour les longs trajets">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2 class="h3">Berline</h2>
+                            <p>Confort et espace pour prendre la route.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="images/commerciale.jpg" class="d-block w-100 carousel-image"
+                            alt="Véhicule commercial pour transporter des marchandises">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h2 class="h3">Commerciale</h2>
+                            <p>Une solution pratique pour vos chargements.</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselVehicules"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselVehicules"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
+        </section>
+
+        <section id="categories" class="container py-5">
+            <div class="mb-4">
+                <p class="text-primary fw-semibold mb-1">Notre sélection</p>
+                <h2 class="fw-bold">Nos catégories de véhicules</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 shadow-sm">
+                        <img src="images/citadine.jpg" class="card-img-top vehicle-image"
+                            alt="Voiture citadine">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title h5">Citadine</h3>
+                            <p class="card-text text-body-secondary">
+                                Des voitures compactes et économiques, idéales pour les déplacements en ville.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 mt-auto">
+                                <a class="btn btn-outline-primary" href="catalogue.html?categorie=Citadine#filtres">
+                                    Voir les Citadines
+                                </a>
+                                <a class="btn btn-primary" href="#reservation"
+                                    data-reservation-category="Citadine">Réserver une Citadine</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 shadow-sm">
+                        <img src="images/berline.jpg" class="card-img-top vehicle-image"
+                            alt="Voiture berline">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title h5">Berline</h3>
+                            <p class="card-text text-body-secondary">
+                                Des voitures confortables et spacieuses, adaptées aux longs trajets.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 mt-auto">
+                                <a class="btn btn-outline-primary" href="catalogue.html?categorie=Berline#filtres">
+                                    Voir les Berlines
+                                </a>
+                                <a class="btn btn-primary" href="#reservation"
+                                    data-reservation-category="Berline">Réserver une Berline</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <article class="card h-100 shadow-sm">
+                        <img src="images/commerciale.jpg" class="card-img-top vehicle-image"
+                            alt="Voiture commerciale">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title h5">Commerciale</h3>
+                            <p class="card-text text-body-secondary">
+                                Des véhicules fonctionnels pour le transport de marchandises.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 mt-auto">
+                                <a class="btn btn-outline-primary"
+                                    href="catalogue.html?categorie=Commerciale#filtres">Voir les Commerciales</a>
+                                <a class="btn btn-primary" href="#reservation"
+                                    data-reservation-category="Commerciale">Réserver une Commerciale</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="catalogue" class="container py-5">
+            <h2 class="fw-bold mb-2">Catalogue des véhicules</h2>
+            <p class="text-body-secondary">Recherchez, triez et parcourez les véhicules disponibles.</p>
+            <div id="catalogueErreur" class="alert alert-danger d-none" role="alert"></div>
+            <div class="table-responsive">
+                <table id="tableauCatalogue" class="table table-striped table-hover align-middle w-100">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Catégorie</th>
+                            <th scope="col">Véhicule</th>
+                            <th scope="col">Puissance</th>
+                            <th scope="col">Prix / jour</th>
+                            <th scope="col">Disponibilité</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="text-center">Chargement du catalogue...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="prix" class="container py-5">
+            <div class="card border-0 bg-primary-subtle">
+                <div class="card-body p-4">
+                    <h2 class="card-title h4">Des tarifs adaptés à votre location</h2>
+                    <p class="card-text mb-0">
+                        Le prix estimé dépend du véhicule choisi et du nombre de jours de location.
+                        Utilisez le formulaire pour calculer votre tarif.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reservation" class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10 col-xl-9">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4 p-md-5">
+                            <p class="text-primary fw-semibold mb-1">Votre prochaine location</p>
+                            <h2 class="card-title fw-bold mb-2">Préparer une réservation</h2>
+                            <p class="text-body-secondary mb-4">
+                                Choisissez d'abord une catégorie, puis un véhicule. Cette démonstration génère un devis,
+                                et conserve localement les véhicules réservés pour contrôler les dates.
+                            </p>
+                            <form id="reservationForm">
+                                <ol class="booking-steps" aria-label="Étapes de réservation">
+                                    <li data-step-indicator="1" aria-current="step"><span>1</span> Dates et véhicule</li>
+                                    <li data-step-indicator="2"><span>2</span> Vos coordonnées</li>
+                                    <li data-step-indicator="3"><span>3</span> Vérification</li>
+                                </ol>
+                                <div id="bookingStep1" data-booking-step="1">
+                                    <h3 class="h5 fw-bold mb-3">Choisir les dates et le véhicule</h3>
+                                    <div class="row g-3">
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="dateDebut">Date de début</label>
+                                            <input class="form-control" type="date" id="dateDebut" required>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="dateFin">Date de fin</label>
+                                            <input class="form-control" type="date" id="dateFin" required>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="categorie">Catégorie</label>
+                                            <select class="form-select" id="categorie" required>
+                                                <option value="">Choisir une catégorie</option>
+                                                <option value="Citadine">Citadine</option>
+                                                <option value="Berline">Berline</option>
+                                                <option value="Commerciale">Commerciale</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="voiture">Voiture</label>
+                                            <select class="form-select" id="voiture" required disabled>
+                                                <option value="">Choisir d'abord une catégorie</option>
+                                            </select>
+                                            <div class="form-text">Les véhicules indisponibles pour ces dates sont masqués.</div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="prixJournalier">Prix journalier</label>
+                                            <input class="form-control bg-body-secondary" type="text" id="prixJournalier"
+                                                readonly aria-describedby="prixAide">
+                                            <div id="prixAide" class="form-text">Mis à jour selon le véhicule choisi.</div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="prixTotal">Prix estimé</label>
+                                            <input class="form-control bg-body-secondary" type="text" id="prixTotal" readonly>
+                                        </div>
+                                        <div class="col-12 d-flex justify-content-end pt-2">
+                                            <button class="btn btn-primary" type="button" data-booking-next="2">
+                                                Continuer <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="bookingStep2" data-booking-step="2" hidden>
+                                    <h3 class="h5 fw-bold mb-3">Vos coordonnées</h3>
+                                    <div class="row g-3">
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="nom">Nom et prénom</label>
+                                            <input class="form-control" type="text" id="nom"
+                                                autocomplete="name" minlength="3" required>
+                                            <div class="invalid-feedback">Saisissez au moins 3 caractères.</div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="email">Email</label>
+                                            <input class="form-control" type="email" id="email"
+                                                autocomplete="email" required>
+                                            <div class="invalid-feedback">Saisissez une adresse email valide.</div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <label class="form-label" for="telephone">Téléphone</label>
+                                            <input class="form-control" type="tel" id="telephone"
+                                                autocomplete="tel" required>
+                                            <div class="invalid-feedback">Saisissez votre numéro de téléphone.</div>
+                                        </div>
+                                        <div class="col-12 d-flex flex-wrap justify-content-between gap-2 pt-2">
+                                            <button class="btn btn-outline-secondary" type="button" data-booking-next="1">
+                                                <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Retour
+                                            </button>
+                                            <button class="btn btn-primary" type="button" data-booking-next="3">
+                                                Vérifier ma réservation <i class="bi bi-arrow-right ms-1" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="bookingStep3" data-booking-step="3" hidden>
+                                    <h3 class="h5 fw-bold mb-3">Vérifiez votre réservation</h3>
+                                    <div id="reservationReview" class="booking-review mb-4" aria-live="polite"></div>
+                                    <div class="d-flex flex-wrap justify-content-between gap-2">
+                                        <button class="btn btn-outline-secondary" type="button" data-booking-next="2">
+                                            <i class="bi bi-arrow-left me-1" aria-hidden="true"></i>Modifier mes coordonnées
+                                        </button>
+                                        <button class="btn btn-primary" type="submit">
+                                            Confirmer et créer le devis <i class="bi bi-check2 ms-1" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <p id="message" class="mb-0" role="status" aria-live="polite"></p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        </main>
+
+    <footer class="site-footer">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-12 col-lg-5">
+                    <a class="footer-brand" href="index2.html">
+                        <i class="bi bi-car-front-fill" aria-hidden="true"></i> AUTO RENT
+                    </a>
+                    <p class="footer-copy mt-3 mb-0">Une location simple, un véhicule adapté et un tarif clair pour chaque trajet.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h2 class="footer-heading">Navigation</h2>
+                    <ul class="footer-links">
+                        <li><a href="index2.html">Accueil</a></li>
+                        <li><a href="index2.html#categories">Catégories</a></li>
+                        <li><a href="catalogue.html">Catalogue</a></li>
+                        <li><a href="index2.html#reservation">Réservation</a></li>
+                        <li data-devis-link hidden><a href="devis.html">Devis</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-4">
+                    <h2 class="footer-heading">Contact</h2>
+                    <p class="footer-copy mb-2">Haitham cherif</p>
+                    <a class="footer-contact" href="https://www.linkedin.com/in/haithamcherif/"
+                        target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-linkedin me-2" aria-hidden="true"></i>Me contacter sur LinkedIn
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom mt-4 pt-3">
+                <span>© 2026 Auto Rent</span>
+                <span>Conçu pour vos déplacements.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/select2/dist/js/select2.min.js"></script>
+    <script src="node_modules/select2/dist/js/i18n/fr.js"></script>
+    <script src="node_modules/datatables.net/js/dataTables.min.js"></script>
+    <script src="node_modules/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="data/vehicles.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
